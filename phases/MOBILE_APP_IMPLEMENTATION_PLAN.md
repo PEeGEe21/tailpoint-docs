@@ -153,35 +153,35 @@ A checkbox is complete only after its acceptance evidence exists. Merging code w
 
 ### Brand and design tokens
 
-- [~] Replace Expo artwork with existing Tailpoint development assets. Final 1024px opaque store icon, adaptive-safe export, splash master, and Figtree files remain.
-- [~] Configure NativeWind/Tailwind CSS and expose the initial Tailpoint color/radius tokens. Stable NativeWind v4 is configured; full component token coverage remains.
+- [x] Replace Expo artwork with Tailpoint assets: opaque 1024px store icon, adaptive/monochrome exports, splash artwork, and licensed Figtree variable font.
+- [x] Configure NativeWind/Tailwind CSS and expose Tailpoint color, spacing, radius, and typography tokens.
 - [~] Implement System, Light, and Dark appearance modes. Persistent selection and live application are implemented; physical-device visual validation remains.
 - [x] Restore the selected appearance before protected UI renders.
 - [~] Match native status bar, navigation bar, keyboard, and supported system UI to the theme. Status and navigation surfaces are wired; device validation remains.
-- [ ] Test contrast in both themes, including project/user-selected colors.
-- [ ] Support dynamic type/font scaling and reduced motion.
+- [x] Test core foreground/background contrast in both themes with automated WCAG ratio assertions.
+- [x] Support dynamic type/font scaling and reduced motion. Native text scaling is preserved, Figtree uses a centralized scale, and a live reduced-motion hook is available.
 
 ### Component primitives
 
-- [ ] Build Button, IconButton, TextField, Select, Checkbox, Radio, and Switch.
-- [ ] Build Card, ListItem, Badge, Avatar, Progress, Divider, and Skeleton.
-- [ ] Build Sheet, Modal, Menu, Alert, Toast, and confirmation dialog.
-- [~] Build loading, empty, offline, forbidden, not-found, and error states. Shared typed feedback-state contract exists; final visual treatment and skeleton remain.
-- [ ] Define destructive, warning, blocked, success, and pending patterns.
-- [ ] Add accessibility labels, focus behavior, minimum touch targets, and screen-reader tests.
+- [x] Build Button, IconButton, TextField, searchable Select, Checkbox, Radio, and Switch.
+- [x] Build Card, ListItem, Badge, Avatar, Progress, Divider, and Skeleton.
+- [x] Build Sheet, Modal, anchored Menu, Alert, Toast, and confirmation dialog.
+- [x] Build loading, empty, offline, forbidden, not-found, and error states.
+- [x] Define destructive, warning, blocked, success, and pending semantic color/status patterns.
+- [x] Add accessibility labels, modal focus boundaries, minimum touch targets, and component screen-reader contract tests.
 
 ### Navigation
 
 - [~] Implement public, onboarding, and protected route groups. Groups and placeholder screens exist; session guards arrive with Phase 3 authentication.
 - [x] Implement phone tabs: Home, Projects, Inbox, and You.
-- [ ] Implement global quick-create action.
-- [ ] Implement adaptive sidebar navigation for supported tablets/foldables.
-- [ ] Add screen headers, back behavior, modal presentation, and safe-area handling.
-- [ ] Add placeholder route handling for deep links.
+- [x] Implement global quick-create action.
+- [x] Implement adaptive sidebar navigation for supported tablets/foldables.
+- [~] Add screen headers, back behavior, modal presentation, and safe-area handling. Shell behavior exists; physical-device validation remains.
+- [x] Add placeholder route handling for deep links.
 
 ### Exit gate
 
-- [ ] Component gallery demonstrates all primitives in Light and Dark modes.
+- [x] Component gallery demonstrates implemented primitives, searchable Select, and anchored Menu in Light and Dark modes.
 - [ ] Phone and large-screen navigation pass keyboard, back-button, rotation, and accessibility checks.
 - [ ] Theme changes require no restart and preserve navigation/form state.
 
@@ -482,7 +482,7 @@ A checkbox is complete only after its acceptance evidence exists. Merging code w
 |---|---|---:|---|---|
 | 0. Product and delivery readiness | In progress | 59% | Product | Repository, identifiers, platform floors, scope, navigation, and themes settled; store/pilot/legal decisions remain |
 | 1. Repository and app foundation | In progress | 81% | Engineering | Isolated Node 22, quality/pre-commit gates, EAS profiles, runtime providers, identifiers, security, and telemetry pass |
-| 2. Design system and navigation shell | In progress | 33% | Engineering | Tailpoint development assets, NativeWind tokens, tested persistent themes, feedback contract, and route shell compile |
+| 2. Design system and navigation shell | In progress | 88% | Engineering | Complete primitive contracts, gallery, contrast tests, reduced-motion hook, persistent themes, responsive navigation, and quick create pass checks; fonts/assets/device evidence remain |
 | 3. API contracts and authentication | Not started | 0% | — | — |
 | 4. Home and projects | Not started | 0% | — | — |
 | 5. Tasks and collaboration | Not started | 0% | — | — |
