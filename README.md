@@ -6,6 +6,7 @@ This repository is the source of truth for Tailpoint product requirements, deliv
 
 - [Product feature roadmap](./product/PRODUCT_FEATURE_ROADMAP.md) — product phases, feature sequencing, and strategic direction.
 - [Phase 3 implementation plan](./phases/PHASE_3_IMPLEMENTATION_PLAN.md) — current Phase 3 contracts, delivery status, and acceptance criteria.
+- [Mobile implementation plan](./phases/MOBILE_APP_IMPLEMENTATION_PLAN.md) — ordered delivery phases, engineering checklists, dependencies, gates, and release timeline.
 - [Mobile app PRD](./product/mobile/MOBILE_APP_PRD.md) — mobile product scope, experience, screens, feature order, and release gates.
 - [Mobile infrastructure](./product/mobile/MOBILE_APP_INFRASTRUCTURE.md) — mobile architecture, security, API contracts, delivery stack, and engineering backlog.
 - [Task tracker](./engineering/TASK_TRACKER.md) — cross-repository implementation tracking.
@@ -34,6 +35,7 @@ tailpoint-docs/
 - [Phase 1 completion audit](./phases/PHASE_1_COMPLETION_AUDIT.md)
 - [Phase 2 implementation plan](./phases/PHASE_2_IMPLEMENTATION_PLAN.md)
 - [Phase 3 implementation plan](./phases/PHASE_3_IMPLEMENTATION_PLAN.md)
+- [Mobile app implementation plan and checklist](./phases/MOBILE_APP_IMPLEMENTATION_PLAN.md)
 
 ## Engineering
 

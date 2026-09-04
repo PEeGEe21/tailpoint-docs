@@ -75,7 +75,7 @@ Generated files are never manually edited. Mobile-specific view models and Zod s
 | Durable offline queue | `expo-sqlite` when enabled | Explicit drafts/outbox, migrations, conflict state |
 | Forms | React Hook Form + Zod | Interactive validation; backend remains authoritative |
 | API contracts | `openapi-typescript` + `openapi-fetch` | Generated from backend Swagger/OpenAPI |
-| Styling | Typed design tokens + React Native styles | Optional utility layer cannot become token source of truth |
+| Styling | NativeWind + Tailwind CSS + typed design tokens | Utilities accelerate layout; semantic tokens remain the source of truth |
 | Lists | React Native virtualized lists; FlashList if profiling warrants | Pagination required |
 | Motion | React Native Reanimated | Only interaction/state clarification |
 | Gestures | React Native Gesture Handler | Swipe actions and sheets where discoverable |
