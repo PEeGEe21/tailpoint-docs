@@ -40,6 +40,7 @@ tailpoint-docs/
 ## Engineering
 
 - [Implementation audit](./engineering/IMPLEMENTATION_AUDIT.md)
+- [Mobile API contract audit](./engineering/MOBILE_API_CONTRACT_AUDIT.md)
 - [Task tracker](./engineering/TASK_TRACKER.md)
 - [Universal intake](./engineering/UNIVERSAL_INTAKE_README.md)
 - [Chat redesign PRD](./engineering/CHAT_REDESIGN.md)
@@ -67,4 +68,4 @@ tailpoint-docs/
 - [`PEeGEe21/track-a-project-admin`](https://github.com/PEeGEe21/track-a-project-admin) — platform administration application.
 - [`PEeGEe21/projecttrakr-sdk`](https://github.com/PEeGEe21/projecttrakr-sdk) — ingestion and monitoring SDK.
 
-The planned mobile repository will be linked here after it is created.
+- [`PEeGEe21/tailpoint-mobile`](https://github.com/PEeGEe21/tailpoint-mobile) — Expo/React Native mobile application.

@@ -1,9 +1,9 @@
 # Tailpoint Mobile App — Implementation Plan and Checklist
 
-**Status:** In progress — Phase 1 foundation  
-**Document version:** 1.0  
-**Last updated:** 2026-09-04  
-**Target:** Production-ready iOS and Android companion app  
+**Status:** In progress — prototype checkpoint before product convergence
+**Document version:** 1.1
+**Last updated:** 2026-09-07
+**Target:** Production-ready iOS and Android companion app
 **Related:** [Mobile PRD](../product/mobile/MOBILE_APP_PRD.md) · [Mobile infrastructure](../product/mobile/MOBILE_APP_INFRASTRUCTURE.md)
 
 ## 1. Delivery objective
@@ -46,6 +46,66 @@ Phases may overlap only when their dependency gates are satisfied. Calendar esti
 - `[!]` Blocked; include the reason next to the item
 
 A checkbox is complete only after its acceptance evidence exists. Merging code without the required test, review, or build evidence does not complete the item.
+
+### 3.1 Critical account and workspace lifecycle dependency
+
+- [ ] **P0 — Critical:** Implement the mobile portions of the agreed
+  [account and workspace lifecycle](../product/ACCOUNT_AND_WORKSPACE_LIFECYCLE.md),
+  including signup email verification, account authentication without an active
+  membership, the create-or-join state, authenticated additional-workspace
+  creation, session rotation, and organization-switcher refresh. Mobile release
+  is blocked until the shared backend contract and critical acceptance criteria
+  in that decision are complete.
+
+## 3.2 Current implementation checkpoint — stop here before expanding scope
+
+The infrastructure baseline and the first mock-backed screen pass are complete enough to evaluate the product as a whole. The current application includes public authentication and organization-entry screens, the navigation shell, Home, Projects, Project Detail, Inbox, You/Profile, and the Task Detail/Create/Edit flow. Forms use React Hook Form and Zod where applicable, and the task flow intentionally uses shared local state rather than live APIs.
+
+These screens are **interaction prototypes**, not proof that every displayed field or workflow belongs in mobile v1. Their presence must not be interpreted as backend compatibility or approved product scope.
+
+**Expansion stop:** Do not add another product module and do not begin live feature API integration until the convergence review below is complete. Infrastructure/security fixes and corrections to existing prototype behavior may continue.
+
+### Required convergence review
+
+- [x] Inventory the actual backend resources, fields, enums, permissions, transitions, and organization boundaries used by mobile-facing workflows.
+- [x] Audit the web frontend for established terminology, information architecture, workflows, and visual patterns.
+- [x] Compare every current mobile screen and mock field with both the backend contract and web product.
+- [x] Classify each mobile capability and mock field as **Keep now**, **Keep later**, **Remove**, or **Redesign**. See the [mobile product convergence matrix](../product/mobile/MOBILE_PRODUCT_CONVERGENCE_MATRIX.md).
+- [ ] Remove invented or unsupported product concepts before they become API assumptions.
+- [ ] Identify backend-supported mobile v1 features that are missing from the prototypes.
+- [x] Produce a screen-by-screen feature-alignment matrix with evidence and ownership for unresolved decisions.
+- [x] Approve the Evolved Tailpoint mobile visual direction and update semantic design tokens before polishing all screens.
+- [x] Redesign Home, Project Detail, and Task Detail/Create first as representative system screens.
+- [ ] Apply the approved system to authentication, Inbox, Profile, and remaining screens.
+- [ ] Resume live API integration only after product, design, frontend, and backend owners approve the matrix and representative screens.
+
+### Current prototype boundary
+
+| Area | Current state | Next decision |
+|---|---|---|
+| Infrastructure | Baseline implemented; device/build evidence remains | Continue verification without expanding product scope |
+| Authentication and organization entry | Mock navigation and validated forms | Reconcile exact backend steps and fields |
+| Home and Projects | Mock-backed navigable prototypes | Reconcile summaries, statuses, milestones, and activity with web/backend |
+| Tasks | Shared local Detail/Create/Edit flow | Reconcile schema, Custom Fields, transitions, dependencies, comments, and attachments |
+| Inbox | Local approval and notification prototype | Verify which approval types, metadata, and decisions actually exist |
+| Profile/You | Local profile and preference prototype | Verify editable account, workspace, security, notification, and support scope |
+| Live APIs | Deliberately paused | Begin only after convergence exit gate |
+
+### Visual identity decision gate
+
+Teal remains a candidate signature color, not the entire interface. The current teal-and-neutral execution is too narrow to express the intended Tailpoint character. During convergence, compare at least two tokenized directions in both themes:
+
+1. **Evolved Tailpoint:** deep slate/navy foundations, teal primary actions, blue informational accents, and lime or warm amber used sparingly for energy and attention.
+2. **Alternative signature:** deep indigo/navy foundations with a non-teal primary accent, retained teal only for selected semantic or product moments.
+
+The review must evaluate representative screens, contrast, status differentiation, accessibility, web continuity, and brand recognizability. Do not solve blandness by adding more saturated colors indiscriminately; improve hierarchy, typography, spacing rhythm, surface depth, icon treatment, illustration language, and motion alongside the palette.
+
+### Convergence exit gate
+
+- [ ] The feature-alignment matrix is approved and unsupported mock concepts are removed or explicitly deferred.
+- [x] One visual direction is approved in Light and Dark themes: Evolved Tailpoint.
+- [ ] Home, Project Detail, and Task Detail/Create demonstrate the approved system.
+- [ ] The implementation plan is re-baselined before live feature API integration resumes.
 
 ## 4. Release scope
 
@@ -191,30 +251,41 @@ A checkbox is complete only after its acceptance evidence exists. Merging code w
 
 ### Backend API contracts
 
-- [ ] Audit Swagger/OpenAPI coverage for authentication, organizations, projects, tasks, dependencies, approvals, notifications, search, and attachments.
-- [ ] Add explicit request/response DTO documentation where schemas are missing or ambiguous.
-- [ ] Add a reproducible OpenAPI export in backend CI.
+- [x] Audit Swagger/OpenAPI coverage for authentication, organizations, projects, tasks, dependencies, approvals, notifications, search, and attachments. See the [mobile API contract audit](../engineering/MOBILE_API_CONTRACT_AUDIT.md).
+- [x] Add explicit request/response DTO documentation for the initial mobile authentication, organization, project, task, dependency, approval, notification, search, and attachment surface.
+- [x] Add a reproducible OpenAPI export and committed contract artifact with drift validation in backend CI.
 - [ ] Add breaking-contract detection against the last mobile-compatible contract.
-- [ ] Generate mobile TypeScript types/client using `openapi-typescript` and `openapi-fetch`.
-- [ ] Add generated-client drift validation in mobile CI.
-- [ ] Normalize the backend error envelope in one mobile API layer.
+- [x] Generate mobile TypeScript types/client using `openapi-typescript` and `openapi-fetch`.
+- [x] Add generated-client drift validation in mobile CI.
+- [x] Normalize the backend error envelope in one mobile API layer.
 - [ ] Confirm pagination, dates, IDs, nullable fields, and enum compatibility rules.
 
 ### Backend authentication readiness
 
-- [ ] Add mobile-safe `POST /api/auth/refresh` using a request body.
-- [ ] Rotate refresh tokens and atomically revoke replaced tokens.
-- [ ] Define refresh reuse, expiration, revocation, and logout behavior.
-- [ ] Keep/deprecate the existing query-based refresh route without breaking web clients.
+- [x] Add mobile-safe `POST /api/auth/refresh` using a validated request body while retaining the legacy query endpoint as deprecated.
+- [x] Rotate refresh tokens and atomically revoke replaced tokens.
+- [x] Define refresh reuse, expiration, revocation, and logout behavior.
+- [x] Keep/deprecate the existing query-based refresh route without breaking web clients.
 - [ ] Add rate-limit and safe-error tests for login, refresh, password recovery, and invitations.
-- [ ] Confirm organization-switch token/session semantics.
+- [x] Confirm organization-switch token/session semantics.
+
+Refresh tokens are one-time members of a persisted device-session family. A
+successful refresh transaction locks and revokes the presented record, creates
+its replacement in the same family, and returns the new pair. Reuse of a revoked
+member revokes every still-active member of that family. Expired, missing,
+wrong-user, wrong-family, and wrong-token-use records return the same safe 401.
+Logout revokes the presented token's entire family. Organization switching
+issues a new family scoped to the selected active membership and revokes the
+calling access token's prior family without affecting other device families.
+Pre-deployment refresh JWTs have no persisted JTI; they remain accepted only
+until their signed expiry and migrate into a persisted family on refresh.
 
 ### Mobile authentication
 
-- [ ] Implement the session bootstrap state machine.
-- [ ] Keep access tokens in memory only.
-- [ ] Store refresh tokens only in SecureStore.
-- [ ] Implement single-flight refresh and retry waiting requests once.
+- [x] Implement the session bootstrap state machine.
+- [x] Keep access tokens in memory only.
+- [x] Store refresh tokens only in SecureStore.
+- [x] Implement single-flight refresh and retry waiting requests once.
 - [ ] Distinguish invalid credentials from offline/timeouts.
 - [ ] Clear tokens, queries, drafts, and user state on sign out.
 - [ ] Implement protected-route guards.
@@ -483,7 +554,7 @@ A checkbox is complete only after its acceptance evidence exists. Merging code w
 | 0. Product and delivery readiness | In progress | 59% | Product | Repository, identifiers, platform floors, scope, navigation, and themes settled; store/pilot/legal decisions remain |
 | 1. Repository and app foundation | In progress | 81% | Engineering | Isolated Node 22, quality/pre-commit gates, EAS profiles, runtime providers, identifiers, security, and telemetry pass |
 | 2. Design system and navigation shell | In progress | 88% | Engineering | Complete primitive contracts, gallery, contrast tests, reduced-motion hook, persistent themes, responsive navigation, and quick create pass checks; fonts/assets/device evidence remain |
-| 3. API contracts and authentication | Not started | 0% | — | — |
+| 3. API contracts and authentication | In progress | 60% | Engineering | Core contracts, refresh rotation/replay protection, session bootstrap, secure refresh storage, organization-aware typed client, single-flight retry, normalized errors, and drift CI are complete; route guards, cleanup, error classification, screens, and end-to-end validation remain |
 | 4. Home and projects | Not started | 0% | — | — |
 | 5. Tasks and collaboration | Not started | 0% | — | — |
 | 6. Dependencies and advanced approvals | Not started | 0% | — | — |

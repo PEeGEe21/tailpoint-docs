@@ -249,6 +249,28 @@ Mobile CI should regenerate from the pinned artifact and fail on unexpected diff
 - Explicit pagination metadata and bounded limits on every list endpoint.
 - OpenAPI response decorators for existing endpoints that are currently inferred poorly.
 
+### Refresh-session lifecycle
+
+- Access tokens live only in process memory and identify their refresh-session
+  family so organization switching can revoke only the calling device session.
+- Refresh tokens are stored only in SecureStore on mobile. Each token has a
+  persisted JTI, family ID, user, optional organization scope, expiry, revocation
+  time, and replacement link; raw refresh tokens are never stored server-side.
+- Refresh atomically consumes one active token and creates its replacement.
+  Concurrent callers share one mobile refresh promise and wait for the same
+  result rather than submitting the token more than once.
+- Reuse of a consumed token is treated as possible credential theft and revokes
+  all active tokens in that family. Other device-session families remain active.
+- Logout revokes the current family and clears SecureStore plus in-memory access
+  state. Feature query caches and drafts must also be cleared when their modules
+  are introduced.
+- A 401 API response is retried at most once after successful rotation. Refresh
+  rejection clears the local session; network/timeouts will be classified
+  separately so an offline device does not present an invalid-credentials error.
+- Legacy refresh JWTs issued before persisted sessions are accepted only until
+  their existing signed expiration, then migrate into a tracked family on their
+  next successful refresh.
+
 ## 8. State ownership and caching
 
 | Data | Owner | Persistence | Invalidation |
