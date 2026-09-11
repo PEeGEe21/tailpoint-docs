@@ -1,7 +1,7 @@
 # Account and Workspace Lifecycle
 
 **Priority:** P0 — Critical  
-**Status:** Ready for implementation planning  
+**Status:** Implementation complete; migration and end-to-end validation pending  
 **Decision date:** 2026-09-09  
 **Surfaces:** Backend API, web workspace, mobile app
 
@@ -97,10 +97,20 @@ This conflates two different concepts:
   existing-user, zero-membership, removed-member, suspended-account, expired
   code, duplicate submission, and rollback cases.
 
-## Current implementation gap
+## Implementation checkpoint
 
-The current public `POST /api/auth/signup/create-organization` operation is an
-account-registration endpoint and correctly rejects an existing email for that
-specific purpose. It must not be broadened to silently reuse an existing user.
-The separate authenticated organization-creation operation and general signup
-email verification are currently missing.
+The backend now issues account-scoped sessions for zero-membership and
+workspace-selection states. Authenticated accounts can create a workspace with
+`POST /api/organizations` or consume an invitation with
+`POST /api/organizations/join`; both flows rotate into an active workspace
+session. New-account signup requires a hashed, expiring, attempt-limited,
+resend-limited, single-use email-verification proof backed by the
+`signup_email_verifications` migration.
+
+Web and mobile now route zero-membership accounts to create-or-join screens,
+support authenticated workspace creation/joining, preserve account-scoped
+mobile sessions across refresh, and require the email-code step during new
+account registration. Type/build/focused test gates pass. Remaining release
+work is migration deployment plus authenticated browser/device end-to-end
+coverage for rollback, expiry, suspension, removed-member, and duplicate
+submission cases.
