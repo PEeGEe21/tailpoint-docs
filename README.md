@@ -5,7 +5,10 @@ This repository is the source of truth for Tailpoint product requirements, deliv
 ## Start here
 
 - [Product feature roadmap](./product/PRODUCT_FEATURE_ROADMAP.md) — product phases, feature sequencing, and strategic direction.
-- [Phase 3 implementation plan](./phases/PHASE_3_IMPLEMENTATION_PLAN.md) — current Phase 3 contracts, delivery status, and acceptance criteria.
+- [Phase 3 implementation plan](./phases/PHASE_3_IMPLEMENTATION_PLAN.md) — completed core Phase 3 contracts, delivery record, and remaining operational verification.
+- [Phase 6A GitHub implementation plan](./phases/PHASE_6A_GITHUB_IMPLEMENTATION_PLAN.md) — one-way GitHub webhook ingestion, task linking, security, and delivery tickets.
+- [GitHub integration usage guide](./operations/GITHUB_INTEGRATION_GUIDE.md) — repository setup, task references, health, secret rotation, troubleshooting, and pilot validation.
+- [Project ownership](./product/PROJECT_OWNERSHIP.md) — permanent creator, co-owner permissions, role lifecycle, and notification rules.
 - [Mobile implementation plan](./phases/MOBILE_APP_IMPLEMENTATION_PLAN.md) — ordered delivery phases, engineering checklists, dependencies, gates, and release timeline.
 - [Mobile app PRD](./product/mobile/MOBILE_APP_PRD.md) — mobile product scope, experience, screens, feature order, and release gates.
 - [Mobile infrastructure](./product/mobile/MOBILE_APP_INFRASTRUCTURE.md) — mobile architecture, security, API contracts, delivery stack, and engineering backlog.
@@ -49,6 +52,7 @@ tailpoint-docs/
 
 - [CI/CD runbook](./operations/CI_CD_RUNBOOK.md)
 - [Data lifecycle policy](./operations/DATA_LIFECYCLE_POLICY.md)
+- [GitHub integration usage guide](./operations/GITHUB_INTEGRATION_GUIDE.md)
 
 ## Documentation conventions
 

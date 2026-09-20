@@ -415,9 +415,11 @@ Suggest cleaned titles, categories, priority, duplicates, assignee, or destinati
 
 Make repeated processes reliable, observable, and enforceable.
 
+**Phase completion audit (2026-09-16):** The non-AI Phase 3 scope in sections 3.1 through 3.6 is implementation-complete and enabled for production rollout. All Phase 3 migrations are applied without observed regressions, the production task-status mutation timeout has been resolved, and the capabilities have been enabled. Production Redis/queue behavior still needs an operational verification window, but that follow-up does not block starting Phase 4. The former optional AI items 3.7 and 3.8 are deferred to the later AI backlog and are not part of the Phase 3 completion gate.
+
 ## 3.1 Rule-Based Automation Builder
 
-**Status:** In progress. The Phase 3 delivery plan, default-off capability, reversible persistence, builder/publish API, durable trigger capture, and execution engine are implemented. Database-backed matching and claims provide concurrency-safe runs, typed conditions, bounded operational retries, stable idempotent actions, forward-only activation, current authorization/resource checks, and causation-based loop protection. Initial actions cover assignment, standard/Custom Field updates, workflow transitions, watchers, notifications, and task-template creation. Dry-run and observability APIs are next.
+**Status:** Released. The default-off capability, reversible persistence, builder/publish API, durable trigger capture, execution engine, dry-run API, run observability, controlled retry, and workspace history are implemented. Database-backed matching and claims provide concurrency-safe runs, typed conditions, bounded operational retries, stable idempotent actions, forward-only activation, current authorization/resource checks, and causation-based loop protection. Actions cover assignment, standard/Custom Field updates, workflow transitions, watchers, notifications, and task-template creation.
 
 **MVP experience:** Administrators build rules with one trigger, multiple conditions, and multiple actions. Initial triggers include task created, field changed, status changed, deadline reached, and form submitted. Actions include assign, update field/status, add watcher, notify, and create task from template.
 
@@ -429,9 +431,13 @@ The synthetic actor is used for attribution, not unrestricted authorization. At 
 
 ## 3.2 Advanced Recurring Work
 
+**Status:** Released.
+
 Extend recurrence to projects, holiday calendars, assignee rotation, reusable checklists, and exceptions. Preserve an occurrence history and make schedule changes effective from a selected date.
 
 ## 3.3 Task Dependencies
+
+**Status:** Released.
 
 **MVP experience:** Tasks can block other tasks. Users receive warnings when starting or completing work in conflict with dependencies.
 
@@ -441,23 +447,21 @@ Extend recurrence to projects, holiday calendars, assignee rotation, reusable ch
 
 ## 3.4 Advanced Approvals
 
+**Status:** Released.
+
 Add sequential stages, required/optional reviewers, unanimous or threshold policies, delegation, reminders, and escalation. Approval policy must be snapshotted when a request begins.
 
 ## 3.5 Audit Trail
+
+**Status:** Released.
 
 Record actor, organization, action, subject, timestamp, request correlation identifier, and safe before/after metadata for important events. Provide filtering, export, and retention controls. Secrets, tokens, and sensitive file contents must never enter the audit payload.
 
 ## 3.6 Reliable Integration Delivery
 
+**Status:** Released.
+
 Provide signed outbound webhooks, retry schedules, delivery logs, secret rotation, replay controls, and a dead-letter state. Replays must preserve the original event identifier.
-
-## 3.7 Conversational Automation (Optional AI)
-
-Convert a plain-language instruction into a draft automation definition. Show the parsed trigger, conditions, and actions for review; validate it through the same rules as the visual builder.
-
-## 3.8 Semantic Duplicate Suggestions (Optional AI)
-
-Suggest similar tasks, requests, and incidents. Users may ignore, link, or merge them. Preserve attribution and activity history during a merge.
 
 ---
 
@@ -466,6 +470,8 @@ Suggest similar tasks, requests, and incidents. Users may ignore, link, or merge
 ## Goal
 
 Make Tailpoint suitable for agencies, consultants, and service organizations working with external stakeholders.
+
+**Status (2026-09-16):** Active next phase. Begin with the shared client-visibility and authorization model required by the Guest and Client Portal, Client Approvals, and all later client-facing records.
 
 ## 4.1 Guest and Client Portal
 
@@ -552,6 +558,8 @@ Answer questions about a single project using tasks, decisions, updates, notes, 
 Use the existing ingestion SDK to create a differentiated workflow for engineering and operations teams.
 
 ## 6.1 GitHub and GitLab
+
+**Status (2026-09-19):** Phase 6A GitHub MVP is in Validation alongside Phase 3 production observation. The one-way, project-scoped vertical slice is implemented across backend, workspace, and admin: default-off entitlement controls, multiple repositories per project, encrypted/rotatable webhook secrets, rate-limited raw-body signature verification, fast `202` acknowledgement and queued processing, stable-ID rename reconciliation, delivery idempotency and retry recovery, provider-timestamp ordering, bounded event normalization, project-safe automatic and manual task linking, visible provenance, deterministic direct-over-inherited precedence, durable unlink/move overrides, safe pull-request inheritance, Owner-visible unresolved-reference diagnostics, archived history, silence/failure health and Owner alerts, task Development links, aggregate support health, activity/audit lifecycle capture, a signed five-event pilot harness, and reversible migrations. Backend and workspace production builds, focused tests, type checks, OpenAPI checks, and the local hardening migration pass. A live GitHub repository pilot remains before release. GitLab, OAuth/GitHub App installation, repository discovery, and two-way synchronization remain deferred. See the [Phase 6A implementation plan](../phases/PHASE_6A_GITHUB_IMPLEMENTATION_PLAN.md).
 
 Link commits, pull requests, issues, deployments, and releases to Tailpoint tasks. Begin with one-way links and webhook ingestion before attempting two-way synchronization. Store provider delivery identifiers for idempotency.
 
@@ -650,6 +658,24 @@ Visualize projects, milestones, tasks, decisions, documents, people, releases, a
 ## 8.5 Enterprise Controls
 
 Add SAML/SSO, SCIM, retention policies, organization exports, advanced audit controls, session management, and optionally IP restrictions. Treat these as security projects with threat modeling and dedicated testing.
+
+---
+
+# Deferred AI Backlog
+
+These items were formerly Phase 3.7 and 3.8. They are deliberately deferred until after the current Phase 4 client and commercial-work priorities and do not reopen the completed Phase 3 delivery gate.
+
+## AI-D1 Conversational Automation
+
+**Status:** Deferred.
+
+Convert a plain-language instruction into a draft automation definition. Show the parsed trigger, conditions, and actions for review; validate it through the same rules as the visual builder.
+
+## AI-D2 Semantic Duplicate Suggestions
+
+**Status:** Deferred.
+
+Suggest similar tasks, requests, and incidents. Users may ignore, link, or merge them. Preserve attribution and activity history during a merge.
 
 ---
 
