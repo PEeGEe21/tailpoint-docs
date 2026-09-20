@@ -101,9 +101,13 @@ Add `--dry-run` to validate arguments and payload generation without sending. Th
 
 ## Deferred beyond 6A
 
+- Project-level Repository Activity for linked and unlinked artifacts, including ordinary commits that do not reference a task.
+- GitHub Actions workflow/check visibility.
 - GitHub App/OAuth installation and automatic repository discovery.
 - GitLab support.
 - Two-way issue synchronization, GitHub mutations, comments, checks, and status writes.
 - Automatic task creation from arbitrary provider events.
 - Backfill of historical repository activity.
 - Release-management and incident-workflow state machines.
+
+These GitHub follow-on items are specified in the [Phase 6B GitHub implementation plan](./PHASE_6B_GITHUB_IMPLEMENTATION_PLAN.md). Phase 6B begins only after the live Phase 6A repository pilot is documented and signed off.

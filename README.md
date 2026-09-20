@@ -7,6 +7,7 @@ This repository is the source of truth for Tailpoint product requirements, deliv
 - [Product feature roadmap](./product/PRODUCT_FEATURE_ROADMAP.md) — product phases, feature sequencing, and strategic direction.
 - [Phase 3 implementation plan](./phases/PHASE_3_IMPLEMENTATION_PLAN.md) — completed core Phase 3 contracts, delivery record, and remaining operational verification.
 - [Phase 6A GitHub implementation plan](./phases/PHASE_6A_GITHUB_IMPLEMENTATION_PLAN.md) — one-way GitHub webhook ingestion, task linking, security, and delivery tickets.
+- [Phase 6B GitHub implementation plan](./phases/PHASE_6B_GITHUB_IMPLEMENTATION_PLAN.md) — repository-wide activity, GitHub App installation, discovery, permission lifecycle, and optional two-way synchronization.
 - [GitHub integration usage guide](./operations/GITHUB_INTEGRATION_GUIDE.md) — repository setup, task references, health, secret rotation, troubleshooting, and pilot validation.
 - [Project ownership](./product/PROJECT_OWNERSHIP.md) — permanent creator, co-owner permissions, role lifecycle, and notification rules.
 - [Mobile implementation plan](./phases/MOBILE_APP_IMPLEMENTATION_PLAN.md) — ordered delivery phases, engineering checklists, dependencies, gates, and release timeline.
@@ -38,6 +39,8 @@ tailpoint-docs/
 - [Phase 1 completion audit](./phases/PHASE_1_COMPLETION_AUDIT.md)
 - [Phase 2 implementation plan](./phases/PHASE_2_IMPLEMENTATION_PLAN.md)
 - [Phase 3 implementation plan](./phases/PHASE_3_IMPLEMENTATION_PLAN.md)
+- [Phase 6A GitHub implementation plan](./phases/PHASE_6A_GITHUB_IMPLEMENTATION_PLAN.md)
+- [Phase 6B GitHub implementation plan](./phases/PHASE_6B_GITHUB_IMPLEMENTATION_PLAN.md)
 - [Mobile app implementation plan and checklist](./phases/MOBILE_APP_IMPLEMENTATION_PLAN.md)
 
 ## Engineering
