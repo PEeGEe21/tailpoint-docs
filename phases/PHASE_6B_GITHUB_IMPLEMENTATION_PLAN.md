@@ -43,6 +43,8 @@ No 6B migration or installation rollout should be coupled to unresolved 6A pilot
 
 ### 1. Project repository activity
 
+**Implementation status (2026-09-20): complete on the Phase 6B development branch.** The project Development tab and scoped API now expose linked and unlinked artifacts with stable cursor pagination, repository/branch/type/actor/state/link/date filters, visual push grouping, branch and link-provenance labels, GitHub deep links, multi-task attachment, and reviewed task-draft creation. Reversible compound indexes cover the primary project-feed and artifact-link lookups. Live-repository validation remains part of the Phase 6A/6B rollout gate rather than unfinished product scope.
+
 Add a project-level **Repository Activity** surface backed by the safe artifacts already captured in 6A. A GitHub event does not need a task reference to be useful or visible.
 
 - Show linked and unlinked commits, pull requests, issues, deployments, releases, and supported GitHub Actions workflow/check activity.
@@ -55,6 +57,8 @@ Add a project-level **Repository Activity** surface backed by the safe artifacts
 - Allow an authorized user to open a prefilled task-creation draft from an artifact. Nothing is created until the user confirms it.
 - Preserve ordinary commits in the activity feed without forcing artificial task creation.
 - Paginate by stable provider time plus ID and define retention before enabling high-volume repositories.
+
+Repository activity follows the project data lifecycle. Linked artifacts and artifacts with retained manual suppression history remain available with their task history. Unlinked artifacts are eligible for the organization's future configured project-data retention process; Phase 6B does not silently delete them on connection archive, and high-volume rollout requires an explicit organization retention setting rather than an undocumented hard-coded purge.
 
 The feed is project-scoped. It must never reveal repositories, artifacts, task existence, or diagnostics from another organization or project.
 
@@ -174,8 +178,8 @@ Migration must preserve Phase 6A connection IDs, artifacts, task links, delivery
 ## Delivery tickets
 
 1. **GH2-00 — Phase 6A live-pilot gate:** execute, remediate, document, and sign off the production/staging pilot.
-2. **GH2-01 — Repository Activity contracts:** define feed artifacts, push grouping, filters, pagination, retention, permissions, and linked/unlinked actions.
-3. **GH2-02 — Project activity APIs and UI:** expose stored 6A artifacts at project level and implement attach/task-draft workflows.
+2. **GH2-01 — Repository Activity contracts:** define feed artifacts, push grouping, filters, pagination, retention, permissions, and linked/unlinked actions. **Status: implementation complete; live validation pending.**
+3. **GH2-02 — Project activity APIs and UI:** expose stored 6A artifacts at project level and implement attach/task-draft workflows. **Status: implementation complete; live validation pending.**
 4. **GH2-03 — GitHub Actions ingestion:** add bounded workflow/check event contracts, persistence, activity rendering, and operational tests.
 5. **GH2-04 — GitHub App foundation:** implement app registration configuration, callback state, installation lifecycle, and secure token minting.
 6. **GH2-05 — Discovery and connection adoption:** discover authorized accounts/repositories, select project mappings, and adopt existing 6A connections without history loss.
